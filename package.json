@@ -1,0 +1,18 @@
+{
+  "name": "space-view",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": {
+    "packages": ["@watsonserve/*"]
+},
+  "scripts": {
+    "utils": "yarn workspace @watsonserve/asm build && yarn workspace @watsonserve/utils build",
+    "audio": "yarn workspace @watsonserve/audioplayer build",
+    "ui": "yarn workspace @watsonserve/ui build",
+    "connector": "yarn workspace @watsonserve/connector build"
+  },
+  "devDependencies": {
+    "typescript": "^4.1.2",
+    "lerna": "^4.0.0"
+  }
+}
