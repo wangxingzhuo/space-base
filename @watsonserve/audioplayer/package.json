@@ -1,6 +1,6 @@
 {
   "name": "@watsonserve/audioplayer",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.1-alpha.1",
   "license": "MIT",
   "private": false,
   "main": "index.js",
@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@types/node": "^20.2.0",
-    "@watsonserve/utils": "^0.0.1-alpha.0"
+    "@watsonserve/utils": "^0.0.1-alpha.1"
   },
   "publishConfig": {
     "access": "public"

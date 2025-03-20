@@ -7,14 +7,17 @@ import * as fsp from 'fs/promises'
 function asmResolve({ matcher }) {
   return {
     name: 'wasm_resolve',
-    resolveId(id, refer) {
-      return id.endsWith('.wasm') && { id, external: false } || null;
+    resolveId(id) {
+      const ok = !!id.match(matcher);
+      return ok && { id, external: false } || null;
     },
     async load(id) {
       if (!id.endsWith('.wasm')) return;
 
       const wasm = await fsp.readFile(id);
+      const dts = await fsp.readFile(path.join(path.dirname(id), 'index.d.ts'));
       this.emitFile({ type: 'asset', fileName: 'index.wasm', source: wasm });
+      this.emitFile({ type: 'asset', fileName: 'asm.d.ts', source: dts });
       return fsp.readFile(path.join(path.dirname(id), 'index.js'), { encoding: 'utf-8' });
     },
     transform(code, id) {
@@ -40,7 +43,7 @@ export default [
          resolve(),
          commonjs(),
          typescript(),
-         asmResolve({ matcher: '@watsonserve/asm' })
+         asmResolve({ matcher: /@watsonserve\/asm.+\index\.wasm/ })
          // asc({
          //    matcher: /assembly\/(.+)$/,
          //    compilerOptions: {
