@@ -133,7 +133,7 @@ export abstract class Connection {
   private async __pingpong(data: IMsg, timeout = 5000) {
     try {
       const resp = await base_request({
-        url: this.__shortUrl,
+        api: this.__shortUrl,
         method: Method.POST,
         timeout,
         headers: {

@@ -4,7 +4,7 @@ export enum Method {
   PUT = 'PUT',
   DELETE = 'DELETE',
   OPTIONS = 'OPTIONS',
-  HEAD = 'HEAD'
+  HEAD = 'HEAD',
 }
 
 export enum ContentType {
@@ -15,12 +15,14 @@ export enum ContentType {
 }
 
 export interface RequestOptions {
-  url: string;
+  api: string;
   method?: Method;
-  headers: any;
+  headers?: Record<string, string>;
   data?: any;
   timeout?: number;
 }
+
+const fetch = globalThis.fetch;
 
 function urlEncode(data: any, searchParams = new URLSearchParams()) {
   Object.keys(data).forEach(key => {
@@ -33,16 +35,12 @@ function urlEncode(data: any, searchParams = new URLSearchParams()) {
 }
 
 export async function base_request(options: RequestOptions): Promise<{ headers: any; body: ArrayBuffer }> {
-  const { url, method, headers, data, timeout } = options;
+  const { api, method, headers, data, timeout } = options;
   const reqNoBody = Method.GET === method || Method.HEAD === method;
+  const signal = timeout ? AbortSignal.timeout(timeout) : null;
 
   try {
-    const timer = setTimeout(() => {
-      clearTimeout(timer);
-      throw new Error('timeout');
-    }, timeout);
-
-    const resp = await fetch(url, {
+    const resp = await fetch(api, {
       method,
       headers,
       cache: 'no-cache',
@@ -50,11 +48,11 @@ export async function base_request(options: RequestOptions): Promise<{ headers: 
       mode: 'no-cors',
       referrerPolicy:'same-origin',
       keepalive: true,
-      body: (reqNoBody) ? undefined : data
+      body: (reqNoBody) ? undefined : data,
+      signal
     });
-    clearTimeout(timer);
 
-    if (!resp.ok) return Promise.reject(new Error(resp.statusText || String(resp.status)));
+    if (!resp.ok) throw new Error(resp.statusText || String(resp.status));
 
     const respBody = await resp.arrayBuffer();
     return { headers: resp.headers, body: respBody };
@@ -64,7 +62,7 @@ export async function base_request(options: RequestOptions): Promise<{ headers: 
 }
 
 export async function request(options: RequestOptions): Promise<any> {
-  const { url: _url, method, headers: _headers, data: _data } = options;
+  const { api: _url, method, headers: _headers, data: _data } = options;
   const url = new URL(_url);
   const reqNoBody = Method.GET === method || Method.HEAD === method;
   let data, headers = { ...(_headers || {}) };
@@ -103,16 +101,23 @@ export async function request(options: RequestOptions): Promise<any> {
   }
 
   const { headers: respHeaders, body } = await base_request({
-    url: url.toString(),
+    api: url.toString(),
     method,
     headers,
     data: (reqNoBody) ? undefined : data
   });
 
   const contentType = (respHeaders.get('Content-Type') || '').split(';')[0];
-
-  if (ContentType.JSON !== contentType && !contentType.startsWith('text/'))
-    return body;
-  const str = new TextDecoder('utf-8').decode(body);
-  return JSON.parse(str);
+  const isTxt = contentType.startsWith('text/');
+  let txtBody = '';
+  if (isTxt || contentType === ContentType.JSON) {
+    txtBody = new TextDecoder('utf-8').decode(body);
+  }
+  switch (contentType) {
+    case ContentType.JSON:
+      return JSON.parse(txtBody);
+    case ContentType.PROTOBUF:
+    default:
+  }
+  return isTxt ? txtBody : body;
 }
