@@ -1,6 +1,6 @@
 import { useMemo, useCallback } from 'react';
-import { IMenuTree, IMenuProps } from '../../types';
-import { classify } from '../../helper';
+import { IMenuTree, IMenuProps } from '../types';
+import { classify } from '../helper';
 import './index.css';
 
 function MenuItem<T>(props: IMenuTree<T> & { onClick(): void }) {

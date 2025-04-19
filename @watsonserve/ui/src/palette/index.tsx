@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { classify } from '../../helper';
+import { classify } from '../helper';
 import './index.css';
 
 interface IPaletteProps {

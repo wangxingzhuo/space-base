@@ -1,15 +1,12 @@
 import { useEffect, useMemo, useState, useRef } from 'react';
-import { ISelectorProps, INameTitle } from '../../types';
-import { classify, fixPosition } from '../../helper';
+import { ISelectorProps, INameTitle } from '../types';
+import { classify, fixPosition } from '../helper';
 import Menu from '../menu';
 import './index.css';
 
-type INTA<T> = INameTitle<T> & { active: boolean };
-
-export default function Radio<T> (props: ISelectorProps<T>) {
+export default function Selector<T> (props: ISelectorProps<T>) {
   const [show, setShow] = useState(false);
-  const selfRef = useRef(null);
-  const { className, value, options, onInput } = props;
+  const selfRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!show) return;
@@ -25,15 +22,17 @@ export default function Radio<T> (props: ISelectorProps<T>) {
     return () => window.removeEventListener('click', hide, true);
   }, [show]);
 
-  const data = useMemo(() => {
-    const opts = new Array<INTA<T>>(options.length);
+  return useMemo(() => {
+    const { value, options } = props;
+    const opts = new Array(options.length);
     let item, active, title = '';
 
-    let left = 0, top = 0;
+    let left = 0, top = 0, width = 100;
     if (selfRef.current) {
       const { x, y } = fixPosition(selfRef.current!);
       left = x;
-      top = y + (selfRef.current! as HTMLDivElement).clientHeight;
+      top = y + selfRef.current.clientHeight;
+      width = selfRef.current.clientWidth;
     }
 
     for (let idx in options) {
@@ -45,15 +44,12 @@ export default function Radio<T> (props: ISelectorProps<T>) {
       opts[idx] = { ...item, active };
     }
 
-    return { opts, title, style: { left, top } };
-  }, [options, value]);
-
-  return (
-    <div className={classify(['some-selector', className])} ref={selfRef}>
+    return (
+    <div className={classify(['some-selector', props.className])} ref={selfRef}>
       <span className="some-selector__title" onClick={() => !show && setShow(true)}>
-        {data.title}
+        {title}
       </span>
-      {show && <Menu tree={data.opts} style={data.style} onClick={(dist: INameTitle<T>) => onInput(dist.name)} />}
+      {show && <Menu tree={opts} style={{ left, top, width }} onClick={(dist: INameTitle<T>) => props.onInput(dist.name)} />}
     </div>
-  );
+  )}, [props.className, props.value, props.options, setShow, props.onInput, show]);
 }

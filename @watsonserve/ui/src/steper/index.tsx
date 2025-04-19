@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Menu from '../menu';
-import { classify, numValidate } from '../../helper';
-import { useDownOptions } from '../../helper/hook';
-import { ISteperProps, INameTitle } from '../../types';
+import { classify, numValidate } from '../helper';
+import { useDownOptions } from '../helper/hook';
+import { ISteperProps, INameTitle } from '../types';
 import './index.css';
 
 export default function Steper(props: ISteperProps) {

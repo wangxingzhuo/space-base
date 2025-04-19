@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import { classify } from '../../helper';
-import { type IBtnProps } from '../../types';
+import { classify } from '../helper';
+import { type IBtnProps } from '../types';
 import './index.css';
 
 export default function Button(props: IBtnProps) {
