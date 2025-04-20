@@ -35,7 +35,7 @@ export abstract class Heartbeat extends Connection {
 
   protected _encode(data: IMsg): ArrayBuffer {
     const raw = JSON.stringify(data);
-    return new TextEncoder().encode(raw);
+    return new TextEncoder().encode(raw).buffer.slice(0) as ArrayBuffer;
   }
 
   protected _decode(data: ArrayBuffer): IMsg {

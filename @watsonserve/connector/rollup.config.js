@@ -1,8 +1,10 @@
 import typescript from '@rollup/plugin-typescript';
 import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
+import dts from 'rollup-plugin-dts';
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
-export default {
+export default [{
   input: './src/index.ts',
   output: {
     dir: 'dist',
@@ -11,6 +13,14 @@ export default {
   plugins: [
     typescript(),
     commonjs(),
-    nodeResolve()
+    peerDepsExternal(),
+    nodeResolve(),
   ]
-};
+}, {
+  input: './src/index.ts',
+  output: {
+    dir: 'dist',
+    format: 'esm'
+  },
+  plugins: [dts()]
+}];

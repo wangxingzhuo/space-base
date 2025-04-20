@@ -1,5 +1,4 @@
 export * from './utils';
-export * from './io';
 export * from './indexdb';
 export * from '@watsonserve/asm';
 

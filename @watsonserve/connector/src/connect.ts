@@ -1,4 +1,5 @@
 import { Method, ContentType, base_request } from './request';
+import { sleep, randomUUID } from '@watsonserve/utils';
 
 export interface IMsg {
   msgUser?: string;
@@ -11,28 +12,6 @@ interface _IMsg extends IMsg {
 
 interface IWaiting {
   (args: IMsg): void;
-}
-
-function sleep(time: number): Promise<void> {
-  return new Promise(resolve => {
-    const timer = setTimeout(() => {
-      clearTimeout(timer);
-      resolve();
-    }, time);
-  });
-}
-
-function randomUUID() {
-  const sp = [4, 6, 8, 10, 0];
-  let i = 0;
-  return [...self.crypto.getRandomValues(new Uint8Array(16))].reduce((pre, n, idx) => {
-    if (idx === sp[i]) {
-      pre += '-';
-      i++;
-    }
-    pre += n.toString(16);
-    return pre;
-  }, '');
 }
 
 function connSocket(url: string) {

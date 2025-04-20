@@ -32,3 +32,16 @@ export function findIndexFrom<T>(ar: T[], start: number = 0, cb: (t: T) => boole
   for (i = 0; i < start && !cb(ar[i]); i++);
   return start <= i ? -1 : i;
 }
+
+export function randomUUID() {
+  const sp = [4, 6, 8, 10, 0];
+  let i = 0;
+  return [...crypto.getRandomValues(new Uint8Array(16))].reduce((pre, n, idx) => {
+    if (idx === sp[i]) {
+      pre += '-';
+      i++;
+    }
+    pre += n.toString(16);
+    return pre;
+  }, '');
+}

@@ -34,7 +34,7 @@ function urlEncode(data: any, searchParams = new URLSearchParams()) {
   return searchParams;
 }
 
-export async function base_request(options: RequestOptions): Promise<{ headers: any; body: ArrayBuffer }> {
+export async function base_request(options: RequestOptions): Promise<{ headers: Headers; body: ArrayBuffer }> {
   const { api, method, headers, data, timeout } = options;
   const reqNoBody = Method.GET === method || Method.HEAD === method;
   const signal = timeout ? AbortSignal.timeout(timeout) : null;
@@ -61,11 +61,16 @@ export async function base_request(options: RequestOptions): Promise<{ headers: 
   }
 }
 
-export async function request(options: RequestOptions): Promise<any> {
-  const { api: _url, method, headers: _headers, data: _data } = options;
-  const url = new URL(_url);
-  const reqNoBody = Method.GET === method || Method.HEAD === method;
+export function request_params(options: RequestOptions) {
+  let { api: _url, method, timeout, headers: _headers = {}, data: _data = null } = options;
+
+  if ('object' !== typeof _headers || Array.isArray(_headers)) {
+    _headers = {}
+  }
   let data, headers = { ...(_headers || {}) };
+  method = method || Method.GET;
+  const reqNoBody = Method.GET === method || Method.HEAD === method;
+  const url = new URL(_url.toString() || '');
 
   // 可以有body，但没有
   if (!data && !reqNoBody)
@@ -100,14 +105,17 @@ export async function request(options: RequestOptions): Promise<any> {
     }
   }
 
-  const { headers: respHeaders, body } = await base_request({
+  return {
     api: url.toString(),
     method,
     headers,
+    timeout: Number(timeout) && Math.max(0, Number(timeout)) || 0,
     data: (reqNoBody) ? undefined : data
-  });
+  };
+}
 
-  const contentType = (respHeaders.get('Content-Type') || '').split(';')[0];
+export function response_parse(headers: Headers, body: ArrayBuffer) {
+  const contentType = (headers.get('Content-Type') || '').split(';')[0];
   const isTxt = contentType.startsWith('text/');
   let txtBody = '';
   if (isTxt || contentType === ContentType.JSON) {
@@ -120,4 +128,9 @@ export async function request(options: RequestOptions): Promise<any> {
     default:
   }
   return isTxt ? txtBody : body;
+}
+
+export async function request(options: RequestOptions): Promise<any> {
+  const { headers, body } = await base_request(request_params(options));
+  return response_parse(headers, body);
 }

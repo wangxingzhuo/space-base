@@ -12,7 +12,7 @@
     "connector": "yarn workspace @watsonserve/connector build"
   },
   "devDependencies": {
-    "typescript": "^4.1.2",
-    "lerna": "^4.0.0"
+    "typescript": "^5.8.3",
+    "lerna": "^8.2.2"
   }
 }

@@ -6,6 +6,7 @@ const fs = require('fs/promises');
   const text = await fs.readFile('./package.json');
   const conf = JSON.parse(text);
   delete conf.scripts;
+  delete conf.devDependencies;
   conf.main = 'index.js';
   await fs.writeFile('./dist/package.json', JSON.stringify(conf));
 })();
