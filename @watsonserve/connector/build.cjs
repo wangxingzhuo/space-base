@@ -8,7 +8,14 @@ const fs = require('fs/promises');
   pkg.private = false;
   pkg.publishConfig = { access: 'public' };
   delete pkg.scripts;
-  pkg.dependencies = pkg.devDependencies;
+  pkg.devDependencies;
+  pkg.dependencies = Object.entries(pkg.devDependencies).reduce((pre, item) => {
+    const [k, v] = item;
+    if (k.startsWith('@types/')) {
+      pre[k] = v;
+    }
+    return pre;
+  }, {});
 
   await fs.writeFile('./dist/package.json', JSON.stringify(pkg));
 })();

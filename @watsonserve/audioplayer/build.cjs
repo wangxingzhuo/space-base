@@ -11,27 +11,26 @@ async function mkPkg() {
   pkg.publishConfig = { access: 'public' };
   delete pkg.scripts;
 
-  await fs.writeFile('../audio-player/package.json', JSON.stringify(pkg));
+  await fs.writeFile('./dist/package.json', JSON.stringify(pkg));
 }
 
 (async () => {
-  await fs.rm('dist/core', { recursive: true, force: true });
-  await fs.rm('dist/bg.d.ts', { recursive: true, force: true });
-  await fs.cp('src/types/core.d.ts', 'dist/core.d.ts');
-  await fs.rm('../audio-player', { recursive: true, force: true });
-  await fs.mkdir('../audio-player');
-
+  await Promise.all([
+    fs.rm('dist/timer.d.ts', { recursive: true, force: true }),
+    fs.rm('dist/channel.d.ts', { recursive: true, force: true }),
+    fs.rm('dist/bg.d.ts', { recursive: true, force: true }),
+    fs.rm('dist/core', { recursive: true, force: true }),
+  ]);
   const files = await fs.readdir('./dist', 'utf-8');
-  await Promise.all(files.reduce((pre, fn) => {
-    if (fn.endsWith('.js')) {
-      pre.push(fs.rename(`dist/${fn}`, `../audio-player/${fn}`));
-    }
-    return pre;
-  }, []));
-  await fs.cp('dist/base.d.ts', '../audio-player/base.d.ts');
-  await fs.cp(__dirname + '/index.html', '../audio-player/index.html');
-  await fs.rename('dist', '../audio-player/types');
-  await fs.cp(path.normalize(`${__dirname}../../../node_modules/@watsonserve/utils/dist/index.wasm`), '../audio-player/index.wasm');
-  await mkPkg();
-  // await fs.link(path.resolve(__dirname, '..', 'audio-player'), path.resolve(__dirname, '..', '..', 'node_modules', '@watsonserve', 'audio-player'));
+  await fs.cp('src/types', 'dist/types', { recursive: true });
+  const mvs = files.map(item => {
+    if (!item.endsWith('.d.ts')) return Promise.resolve();
+    return fs.rename(`dist/${item}`, `dist/types/${item}`, { recursive: true });
+  });
+  await Promise.all([
+    ...mvs,
+    fs.cp('index.html', 'dist/index.html'),
+    fs.cp('node_modules/@watsonserve/utils/index.wasm', 'dist/index.wasm'),
+    mkPkg()
+  ]);
 })();

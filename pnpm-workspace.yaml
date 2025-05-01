@@ -1,0 +1,8 @@
+ignoredBuiltDependencies:
+  - nx
+
+packages:
+  - '@watsonserve/*'
+
+overrides:
+  utils: link:./@watsonserve/utils/dist

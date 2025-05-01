@@ -2,17 +2,20 @@
   "name": "space-view",
   "version": "0.1.0",
   "private": true,
-  "workspaces": {
-    "packages": ["@watsonserve/*"]
-},
+  "workspaces": ["@watsonserve/*"],
   "scripts": {
-    "utils": "yarn workspace @watsonserve/asm build && yarn workspace @watsonserve/utils build",
-    "audio": "yarn workspace @watsonserve/audioplayer build",
-    "ui": "yarn workspace @watsonserve/ui build",
-    "connector": "yarn workspace @watsonserve/connector build"
+    "utils": "pnpm --filter @watsonserve/asm build && pnpm --filter @watsonserve/utils build",
+    "audio": "pnpm --filter @watsonserve/audioplayer build",
+    "ui": "pnpm --filter @watsonserve/ui build",
+    "connector": "pnpm --filter @watsonserve/connector build"
   },
   "devDependencies": {
     "typescript": "^5.8.3",
     "lerna": "^8.2.2"
+  },
+  "packageManager": "pnpm@10.8.1+sha512.c50088ba998c67b8ca8c99df8a5e02fd2ae2e2b29aaf238feaa9e124248d3f48f9fb6db2424949ff901cffbb5e0f0cc1ad6aedb602cd29450751d11c35023677",
+  "dependencies": {
+    "asm": "link:./@watsonserve/asm/dist",
+    "utils": "link:./@watsonserve/utils/dist"
   }
 }
