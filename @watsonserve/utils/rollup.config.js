@@ -43,7 +43,7 @@ export default [
          resolve(),
          commonjs(),
          typescript(),
-         asmResolve({ matcher: /@watsonserve\/asm.+\index\.wasm/ })
+         asmResolve({ matcher: /@watsonserve\/asm/ })
          // asc({
          //    matcher: /assembly\/(.+)$/,
          //    compilerOptions: {

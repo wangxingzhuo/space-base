@@ -8,7 +8,7 @@ async function mkPkg() {
   pkg.private = false;
   pkg.publishConfig = { access: 'public' };
   delete pkg.scripts;
-  delete pkg.dependencies['@watsonserve/asm'];
+  delete pkg.dependencies;
 
   await fs.writeFile('./dist/package.json', JSON.stringify(pkg));
 }

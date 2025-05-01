@@ -1,6 +1,6 @@
 {
   "name": "@watsonserve/utils",
-  "version": "0.0.1-alpha.2",
+  "version": "0.0.1-alpha.3",
   "private": true,
   "main": "dist/index.js",
   "scripts": {
@@ -9,17 +9,14 @@
     "start": "yarn serve ."
   },
   "dependencies": {
-    "@watsonserve/asm": "0.0.1-alpha.0"
+    "@watsonserve/asm": "link:../asm/dist"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-commonjs": "^28.0.3",
     "@rollup/plugin-json": "",
-    "@rollup/plugin-node-resolve": "^13.0.6",
-    "assemblyscript": "^0.20.8",
-    "rollup": "^3.22.0",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "rollup": "^4.40.1",
     "rollup-plugin-asc": "^0.2.0",
-    "rollup-plugin-assemblyscript": "^2.0.0",
-    "rollup-plugin-replace": "",
     "rollup-plugin-typescript2": "^0.31.0",
     "typescript": "^5.8.3"
   },
