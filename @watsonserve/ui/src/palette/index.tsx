@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { classify } from '../helper';
+import { classify } from '@watsonserve/utils';
 import './index.css';
 
 interface IPaletteProps {
@@ -15,7 +15,7 @@ export default function Palette(props: IPaletteProps) {
   const handleChange = (ev: ChangeEvent<HTMLInputElement>) => onInput(ev.target.value);
 
   return (
-    <div className={classify(['some-palette', className])}>
+    <div className={classify('some-palette', className)}>
       {children}
       <input type="color" className="some-palette__inner" value={value} onChange={handleChange} />
     </div>

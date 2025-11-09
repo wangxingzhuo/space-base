@@ -1,6 +1,6 @@
 import { useMemo, useRef, useEffect, useState } from 'react';
 import { TabItemProps, ITabBarProps } from '../types';
-import { classify } from '../helper';
+import { classify } from '@watsonserve/utils';
 import './index.css';
 
 function TabItem(props: TabItemProps) {

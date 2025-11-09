@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState, useRef } from 'react';
+import { classify } from '@watsonserve/utils';
 import { ISelectorProps, INameTitle } from '../types';
-import { classify, fixPosition } from '../helper';
+import { fixPosition } from '../helper';
 import Menu from '../menu';
 import './index.css';
 
@@ -45,7 +46,7 @@ export default function Selector<T> (props: ISelectorProps<T>) {
     }
 
     return (
-    <div className={classify(['some-selector', props.className])} ref={selfRef}>
+    <div className={classify('some-selector', props.className)} ref={selfRef}>
       <span className="some-selector__title" onClick={() => !show && setShow(true)}>
         {title}
       </span>

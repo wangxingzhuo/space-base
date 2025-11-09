@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState, useRef } from 'react';
+import { classify } from '@watsonserve/utils';
 import { ISelectorProps, INameTitle } from '../types';
-import { classify, fixPosition } from '../helper';
+import { fixPosition } from '../helper';
 import Menu from '../menu';
 import './index.css';
 
@@ -49,7 +50,7 @@ export default function Radio<T> (props: ISelectorProps<T>) {
   }, [options, value]);
 
   return (
-    <div className={classify(['some-selector', className])} ref={selfRef}>
+    <div className={classify('some-selector', className)} ref={selfRef}>
       <span className="some-selector__title" onClick={() => !show && setShow(true)}>
         {data.title}
       </span>

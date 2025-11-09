@@ -21,6 +21,9 @@
       "last 1 safari version"
     ]
   },
+  "peerDependencies": {
+    "@watsonserve/utils": "workspace:../utils/dist"
+  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.1.3",

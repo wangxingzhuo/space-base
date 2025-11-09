@@ -1,15 +1,14 @@
 {
   "name": "@watsonserve/utils",
-  "version": "0.0.1-alpha.3",
+  "version": "0.0.1-alpha.4",
   "private": true,
   "main": "dist/index.js",
   "scripts": {
     "build": "rollup --config rollup.config.js && node build.cjs",
-    "test": "node tests",
-    "start": "yarn serve ."
+    "test": "node tests"
   },
   "dependencies": {
-    "@watsonserve/asm": "link:../asm/dist"
+    "@watsonserve/asm": "workspace:*"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.3",

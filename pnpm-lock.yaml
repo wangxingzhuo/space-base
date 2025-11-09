@@ -4,19 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  utils: link:./@watsonserve/utils/dist
-
 importers:
 
   .:
-    dependencies:
-      asm:
-        specifier: link:./@watsonserve/asm/dist
-        version: link:@watsonserve/asm/dist
-      utils:
-        specifier: link:@watsonserve/utils/dist
-        version: link:@watsonserve/utils/dist
     devDependencies:
       lerna:
         specifier: ^8.2.2
@@ -106,6 +96,10 @@ importers:
         version: 5.8.3
 
   '@watsonserve/ui':
+    dependencies:
+      '@watsonserve/utils':
+        specifier: workspace:../utils/dist
+        version: link:../utils/dist
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: ^21.0.1
@@ -141,8 +135,8 @@ importers:
   '@watsonserve/utils':
     dependencies:
       '@watsonserve/asm':
-        specifier: link:../asm/dist
-        version: link:../asm/dist
+        specifier: workspace:*
+        version: link:../asm
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: ^28.0.3

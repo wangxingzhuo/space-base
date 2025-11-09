@@ -1,17 +1,20 @@
 interface INameSet {
-  [name: string]: boolean;
+  [name: string]: any;
 }
+type IClassProps = string | undefined | INameSet;
 
-function classSet2str(classNames: string | INameSet): string {
+function classSet2str(classNames: IClassProps): string {
+  if (!classNames) return '';
   if ('string' === typeof classNames) return classNames;
   return Object.keys(classNames).filter(name => classNames[name]).join(' ');
 }
 
-export function className(classNames: string | INameSet | (INameSet | string)[]): string {
-  if (Array.isArray(classNames)) {
-    return classNames.map(classSet2str).join(' ');
-  }
-  return classSet2str(classNames);
+export function classify(...classNames: IClassProps[]): string {
+  return classNames.reduce<string[]>((pre, item) => {
+    const cStr = classSet2str(item);
+    cStr && pre.push(cStr);
+    return pre;
+  }, []).join(' ');
 }
 
 export function sleep(timeout = 0) {

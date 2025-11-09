@@ -7,9 +7,15 @@ import * as fsp from 'fs/promises'
 function asmResolve({ matcher }) {
   return {
     name: 'wasm_resolve',
-    resolveId(id) {
-      const ok = !!id.match(matcher);
-      return ok && { id, external: false } || null;
+    async resolveId(id) {
+      if (!id.match(matcher)) return null;
+
+      if (id.endsWith('.wasm')) return { id, external: false };
+
+      const pkgDir = path.join(import.meta.dirname, 'node_modules', id);
+      const pkg = await fsp.readFile(path.join(pkgDir, 'package.json'));
+      const entry = JSON.parse(pkg).main;
+      return { id: path.join(pkgDir, entry), external: false };
     },
     async load(id) {
       if (!id.endsWith('.wasm')) return;
@@ -44,16 +50,6 @@ export default [
          commonjs(),
          typescript(),
          asmResolve({ matcher: /@watsonserve\/asm/ })
-         // asc({
-         //    matcher: /assembly\/(.+)$/,
-         //    compilerOptions: {
-         //       target: 'release'
-         //    }
-         // }),
-         // replace({
-         //    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-         // }),
-         // json()
       ]
    }
 ]

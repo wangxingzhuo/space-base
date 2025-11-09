@@ -1,20 +1,20 @@
 import { useMemo, useCallback } from 'react';
 import { IMenuTree, IMenuProps } from '../types';
-import { classify } from '../helper';
+import { classify } from '@watsonserve/utils';
 import './index.css';
 
 function MenuItem<T>(props: IMenuTree<T> & { onClick(): void }) {
   const { title, className, Icon, tip, checkbox, active, disabled, onClick } = props;
 
   return useMemo(() => {
-    const _className = classify([
+    const _className = classify(
       'some-menu__item',
       className,
       {
         active: !checkbox && active,
         disabled
       }
-    ]);
+    );
 
     const handleClick = (ev: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
       ev.stopPropagation();
@@ -56,7 +56,7 @@ export default function Menu<T>(props: IMenuProps<T>) {
   );
 
   return useMemo(() => (
-    <ul className={classify(['some-menu', className])} style={style}>
+    <ul className={classify('some-menu', className)} style={style}>
       {list}
     </ul>
   ), [className, style, list]);

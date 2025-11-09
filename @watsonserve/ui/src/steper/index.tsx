@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { classify } from '@watsonserve/utils';
 import Menu from '../menu';
-import { classify, numValidate } from '../helper';
+import { numValidate } from '../helper';
 import { useDownOptions } from '../helper/hook';
 import { ISteperProps, INameTitle } from '../types';
 import './index.css';
@@ -75,7 +76,7 @@ export default function Steper(props: ISteperProps) {
   const max = props.max || Infinity;
 
   return (
-    <div className={classify(['some-steper', props.className])} ref={selfRef}>
+    <div className={classify('some-steper', props.className)} ref={selfRef}>
       <span
         className={classify({"some-steper__sub": true, disabled: +num <= min })}
         onClick={ev => handleClick(ev, -1)}
