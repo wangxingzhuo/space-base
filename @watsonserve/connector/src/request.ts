@@ -22,6 +22,21 @@ export interface RequestOptions {
   timeout?: number;
 }
 
+interface IBaseResp {
+  ok: boolean;
+  status: number;
+  statusText: string;
+  headers: Headers;
+  body: ArrayBuffer;
+}
+
+interface IRsp {
+  ok: boolean;
+  status: number;
+  statusText: string;
+  data: string | ArrayBuffer | Record<string, any>;
+}
+
 const fetch = globalThis.fetch;
 
 function urlEncode(data: any, searchParams = new URLSearchParams()) {
@@ -34,34 +49,29 @@ function urlEncode(data: any, searchParams = new URLSearchParams()) {
   return searchParams;
 }
 
-export async function base_request(options: RequestOptions): Promise<{ headers: Headers; body: ArrayBuffer }> {
+export async function baseRequest(options: RequestOptions): Promise<IBaseResp> {
   const { api, method, headers, data, timeout } = options;
   const reqNoBody = Method.GET === method || Method.HEAD === method;
   const signal = timeout ? AbortSignal.timeout(timeout) : null;
 
-  try {
-    const resp = await fetch(api, {
-      method,
-      headers,
-      cache: 'no-cache',
-      credentials: 'include',
-      mode: 'no-cors',
-      referrerPolicy:'same-origin',
-      keepalive: true,
-      body: (reqNoBody) ? undefined : data,
-      signal
-    });
+  const resp = await fetch(api, {
+    method,
+    headers,
+    cache: 'no-cache',
+    credentials: 'include',
+    mode: 'no-cors',
+    referrerPolicy:'same-origin',
+    keepalive: true,
+    body: (reqNoBody) ? undefined : data,
+    signal
+  });
 
-    if (!resp.ok) throw new Error(resp.statusText || String(resp.status));
-
-    const respBody = await resp.arrayBuffer();
-    return { headers: resp.headers, body: respBody };
-  } catch(err) {
-    return Promise.reject(err);
-  }
+  const { ok, status, statusText } = resp;
+  const respBody = await resp.arrayBuffer();
+  return { ok, status, statusText, headers: resp.headers, body: respBody };
 }
 
-export function request_params(options: RequestOptions) {
+function requestParams(options: RequestOptions) {
   let { api: _url, method, timeout, headers: _headers = {}, data: _data = null } = options;
 
   if ('object' !== typeof _headers || Array.isArray(_headers)) {
@@ -114,23 +124,29 @@ export function request_params(options: RequestOptions) {
   };
 }
 
-export function response_parse(headers: Headers, body: ArrayBuffer) {
+function responseParse(rsp: IBaseResp): IRsp {
+  const { ok, status, statusText, headers, body } = rsp;
   const contentType = (headers.get('Content-Type') || '').split(';')[0];
   const isTxt = contentType.startsWith('text/');
   let txtBody = '';
   if (isTxt || contentType === ContentType.JSON) {
     txtBody = new TextDecoder('utf-8').decode(body);
   }
+
+  let data: string | ArrayBuffer | Record<string, any>;
   switch (contentType) {
     case ContentType.JSON:
-      return JSON.parse(txtBody);
+      data = JSON.parse(txtBody);
+      break;
     case ContentType.PROTOBUF:
     default:
+      data = isTxt ? txtBody : body;
   }
-  return isTxt ? txtBody : body;
+
+  return { ok, status, statusText, data };
 }
 
-export async function request(options: RequestOptions): Promise<any> {
-  const { headers, body } = await base_request(request_params(options));
-  return response_parse(headers, body);
+export async function request(options: RequestOptions) {
+  const rsp = await baseRequest(requestParams(options));
+  return responseParse(rsp);
 }
