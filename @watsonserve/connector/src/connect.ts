@@ -1,4 +1,4 @@
-import { Method, ContentType, base_request } from './request';
+import { Method, ContentType, baseRequest } from './request';
 import { sleep, randomUUID } from '@watsonserve/utils';
 
 export interface IMsg {
@@ -111,7 +111,7 @@ export abstract class Connection {
    */
   private async __pingpong(data: IMsg, timeout = 5000) {
     try {
-      const resp = await base_request({
+      const resp = await baseRequest({
         api: this.__shortUrl,
         method: Method.POST,
         timeout,
