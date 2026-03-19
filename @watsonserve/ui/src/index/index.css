@@ -26,6 +26,8 @@ code {
   --form-disabled-color: #999;
   --form-active-color: #444;
   --form-hover-color: #444;
+  --input-font-size: 14px;
+  --input-height: 24px;
   --btn-color: #fff;
   --btn-bg-color: transparent;
 }

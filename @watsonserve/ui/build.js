@@ -7,6 +7,7 @@ const fs = require('fs/promises');
   const conf = JSON.parse(text);
   delete conf.scripts;
   delete conf.devDependencies;
+  conf.peerDependencies['@watsonserve/utils'] = '^0.0.1';
   conf.main = 'index.js';
-  await fs.writeFile('./dist/package.json', JSON.stringify(conf));
+  await fs.writeFile('./dist/package.json', JSON.stringify(conf, null, 2));
 })();

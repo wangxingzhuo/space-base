@@ -6,12 +6,12 @@
   display: block;
   border-radius: var(--radius);
   padding: 0 8px;
-  height: 24px;
+  height: var(--input-height);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 14px;
-  line-height: 24px;
+  font-size: var(--input-font-size);
+  line-height: var(--input-height);
   background-color: var(--form-bg-color);
   cursor: pointer;
 }

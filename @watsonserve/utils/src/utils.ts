@@ -48,3 +48,9 @@ export function randomUUID() {
     return pre;
   }, '');
 }
+
+export async function sha256(fp: File) {
+  const buf = await fp.arrayBuffer();
+  const hash = await crypto.subtle.digest('SHA-256', buf);
+  return (new Uint8Array(hash) as any).toHex() as string;
+}

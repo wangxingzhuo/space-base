@@ -22,7 +22,7 @@ const conf = (async function() {
       format: 'esm',
     },
     treeshake: true,
-    external: ['react', 'react-dom', 'react/jsx-runtime'],
+    external: ['react', 'react-dom', 'react/jsx-runtime', '@watsonserve/utils'],
     plugins: [
       typescript({}),
       postcss(),

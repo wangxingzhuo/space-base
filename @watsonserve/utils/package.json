@@ -1,6 +1,6 @@
 {
   "name": "@watsonserve/utils",
-  "version": "0.0.1-alpha.4",
+  "version": "0.0.1-alpha.5",
   "private": true,
   "main": "dist/index.js",
   "scripts": {
@@ -11,13 +11,13 @@
     "@watsonserve/asm": "workspace:*"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^28.0.3",
-    "@rollup/plugin-json": "",
-    "@rollup/plugin-node-resolve": "^16.0.1",
-    "rollup": "^4.40.1",
+    "@rollup/plugin-commonjs": "^28.0.9",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "rollup": "^4.59.0",
     "rollup-plugin-asc": "^0.2.0",
-    "rollup-plugin-typescript2": "^0.31.0",
-    "typescript": "^5.8.3"
+    "rollup-plugin-typescript2": "^0.31.2",
+    "typescript": "^5.9.3"
   },
   "license": "MIT",
   "type": "module"
