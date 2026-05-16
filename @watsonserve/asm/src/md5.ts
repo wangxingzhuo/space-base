@@ -1,5 +1,5 @@
-const crypt = require('crypt');
-const bin = require('charenc').bin;
+import crypt from 'crypt';
+import bin from 'charenc';
 
 // Auxiliary functions
 function FF(a: u32, b: u32, c: u32, d: u32, x: u32, s: u32, t: u32) {

@@ -1,8 +1,8 @@
 import { useCallback, useRef, useState } from 'react';
 import Selector from '@watsonserve/ui/selector';
 import Button from '@watsonserve/ui/button';
+import Modal from '@watsonserve/ui/modal';
 import { EnTType, type ITade } from '@/entities';
-import Modal from '../modal';
 import classes from './style.module.styl';
 
 interface IProps {

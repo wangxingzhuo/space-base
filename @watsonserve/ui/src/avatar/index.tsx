@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import classes from './style.module.styl';
+import './style.css';
 
 interface IProps {
   src?: string;
@@ -23,7 +23,7 @@ export default function(props: IProps) {
   }, []);
 
   return (
-    <div className={classes.avatar}>
+    <div className="some-avatar">
       {imgSrc ? <img src={imgSrc} /> : <span>{ props.alt?.toUpperCase() }</span>}
     </div>
   );

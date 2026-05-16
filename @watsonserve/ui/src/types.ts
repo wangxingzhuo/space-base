@@ -1,4 +1,4 @@
-import { ReactElement, JSXElementConstructor, ReactPortal, MouseEventHandler } from 'react';
+import { ReactElement, MouseEventHandler } from 'react';
 
 export interface INameTitle<T = string> {
   name: T;
@@ -22,7 +22,7 @@ export interface TabItemProps {
 }
 
 export interface ITabBarProps {
-  children: string | number | boolean | {} | null | undefined | ReactElement<any, string | JSXElementConstructor<any>> | ReactPortal;
+  children: ReactElement;
   active: string;
   list: INameTitle[];
   onClick(name: string): void;
@@ -30,7 +30,7 @@ export interface ITabBarProps {
 
 export interface IMenuTree<T> extends INameTitle<T> {
   className?: string;
-  Icon?: () => JSX.Element;
+  Icon?: () => ReactElement;
   tip?: string;
   checkbox?: boolean;
   active?: boolean;

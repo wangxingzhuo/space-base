@@ -1,3 +1,4 @@
+// import path from 'node:path';
 import fs from 'node:fs/promises';
 import typescript from '@rollup/plugin-typescript';
 import commonjs from '@rollup/plugin-commonjs';
@@ -5,10 +6,11 @@ import nodeResolve from '@rollup/plugin-node-resolve';
 import postcss from 'rollup-plugin-postcss';
 
 const conf = (async function() {
-  const list = await fs.readdir('./src');
+  const list = await fs.readdir('./src', { withFileTypes: true });
   const input = list.reduce((pre, item) => {
-    if ('.' !== item[0] && !['helper', 'index', 'types.ts'].includes(item)) {
-      pre[`${item}/index`] = `./src/${item}/index.tsx`;
+    const name = item.name;
+    if (item.isDirectory() && '.' !== name[0] && !['helper', 'index'].includes(name)) {
+      pre[`${name}/index`] = `./src/${name}/index.tsx`;
     }
     return pre;
   }, {
@@ -18,13 +20,13 @@ const conf = (async function() {
   return {
     input,
     output: {
-      dir: 'dist',
+      dir: './dist',
       format: 'esm',
     },
     treeshake: true,
     external: ['react', 'react-dom', 'react/jsx-runtime', '@watsonserve/utils'],
     plugins: [
-      typescript({}),
+      typescript(),
       postcss(),
       commonjs(),
       nodeResolve()

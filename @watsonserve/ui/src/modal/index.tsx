@@ -1,5 +1,5 @@
 import { type ReactNode, type UIEvent, useRef } from 'react';
-import classes from './style.module.styl';
+import './style.css';
 
 interface IProps {
   children?: ReactNode;
@@ -16,7 +16,7 @@ export default function(props: IProps) {
   };
 
   return (
-    <div className={classes.modal} ref={selfRef} onClick={hanldeClick}>
+    <div className="some-modal" ref={selfRef} onClick={hanldeClick}>
       {props.children}
     </div>
   );

@@ -13,14 +13,13 @@
     "@rollup/plugin-commonjs": "^25.0.8",
     "@rollup/plugin-node-resolve": "^15.3.1",
     "@rollup/plugin-typescript": "^11.1.6",
-    "@types/node": "^20.2.0",
+    "@types/node": "^25.8.0",
     "rollup": "^3.30.0",
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-polyfill-node": "^0.12.0",
     "typescript": "^6.0.2"
   },
   "dependencies": {
-    "@types/node": "^20.19.37",
     "@watsonserve/utils": "0.0.1-alpha.5"
   },
   "publishConfig": {

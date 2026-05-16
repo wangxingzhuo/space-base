@@ -11,7 +11,7 @@
     "@rollup/plugin-node-resolve": "^15.0.2",
     "@rollup/plugin-replace": "^5.0.2",
     "@rollup/plugin-typescript": "^11.1.1",
-    "@types/node": "^22.10.6",
+    "@types/node": "^25.8.0",
     "cross-env": "^7.0.3",
     "rollup": "^3.22.0",
     "rollup-plugin-replace": "^2.2.0",

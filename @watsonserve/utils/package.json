@@ -10,6 +10,10 @@
   "dependencies": {
     "@watsonserve/asm": "workspace:*"
   },
+  "peerDependencies": {
+    "@types/react": "^19.2.14",
+    "react": "^19.2.6"
+  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.9",
     "@rollup/plugin-json": "^6.1.0",

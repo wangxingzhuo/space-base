@@ -24,10 +24,9 @@
     "stock-dev": "pnpm run --filter @watsonserve/stock-node srv"
   },
   "devDependencies": {
-    "lerna": "^8.2.4",
     "typescript": "^6.0.2",
     "@rsbuild/plugin-svgr": "^1.2.2",
-    "@types/node": "^25.6.0",
+    "@types/node": "^25.8.0",
     "tsx": "^4.21.0"
   },
   "packageManager": "pnpm@10.33.0"

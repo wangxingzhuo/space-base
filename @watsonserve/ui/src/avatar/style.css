@@ -1,4 +1,4 @@
-.avatar {
+.some-avatar {
   display: flex;
   border-radius: var(--avatar-size, 32px);
   width: var(--avatar-size, 32px);

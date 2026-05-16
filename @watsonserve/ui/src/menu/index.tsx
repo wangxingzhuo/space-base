@@ -38,7 +38,7 @@ function MenuItem<T>(props: IMenuTree<T> & { onClick(): void }) {
 export default function Menu<T>(props: IMenuProps<T>) {
   const { className, style, tree, onClick } = props;
 
-  const handleClick = useCallback((dist) => {
+  const handleClick = useCallback((dist: IMenuTree<T>) => {
     if (dist.children) {
       // @TODO
       return;
