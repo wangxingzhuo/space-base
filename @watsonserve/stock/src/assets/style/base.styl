@@ -1,0 +1,83 @@
+body
+  margin 0
+  font-family -apple-system, 'Helvetica Neue', 'Source Sans Pro', 'Lucida Grande', sans-serif //, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans'
+  -webkit-font-smoothing antialiased
+  -moz-osx-font-smoothing grayscale
+  line-height 1.5em
+  background var(--primary-bg-color)
+
+*, *::before, *::after
+  box-sizing border-box
+
+h1, h2, h3, h4, h5, h6, p, ul, ol, dd
+  margin 0
+
+code
+  font-family source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace
+
+ul, ol
+  margin 0
+  border 0
+  padding 0
+  list-style-type none
+
+li
+  list-style none
+
+a, button
+  cursor pointer
+
+button
+  border 0
+
+  &:focus
+    outline 0
+
+svg
+  width 100%
+  height 100%
+
+
+a:focus, input:focus, button:focus {
+  outline: 0;
+}
+
+a, a:visited, a:focus, a:hover, a:active, a:focus:active {
+  color: #37abe7;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a[disabled] button[disabled] {
+  pointer-events: none;
+  cursor: default;
+}
+
+#root {
+  color: var(--font-color);
+}
+
+.some-input {
+  border: 0;
+  border-radius: var(--radius);
+  padding: 4px 8px;
+  height: 32px;
+  outline: 0;
+  color: #fff;
+  font-size: 16px;
+  background-color: var(--form-bg-color);
+  line-height: 24px;
+}
+
+#root .some-button {
+  padding: 2px 4px;
+  user-select: none;
+
+  &.active {
+    background-color: var(--active-cursor-color);
+  }
+}
+
+.some-button.submit {
+  height: 32px;
+}

@@ -1,0 +1,58 @@
+{
+  "name": "@watsonserve/stock",
+  "version": "0.0.1",
+  "description": "",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "rsbuild dev --open",
+    "build": "rsbuild build && tar -czf stock.tar.gz ./stock",
+    "preview": "rsbuild preview"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.17.20",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@watsonserve/connector": "^0.0.5",
+    "@watsonserve/ui": "^0.0.5-alpha.0",
+    "@watsonserve/utils": "^0.0.1-alpha.5",
+    "decimal.js": "^10.6.0",
+    "events": "^3.3.0",
+    "lodash": "^4.17.21",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "react-router-dom": "^7.9.5"
+  },
+  "devDependencies": {
+    "@rsbuild/core": "^2.0.3",
+    "@rsbuild/plugin-node-polyfill": "^1.3.0",
+    "@rsbuild/plugin-react": "^2.0.0",
+    "@rsbuild/plugin-stylus": "^1.2.0",
+    "@rsbuild/plugin-svgr": "^2.0.1",
+    "typescript": "^6.0.3"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.33.0"
+}

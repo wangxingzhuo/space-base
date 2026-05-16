@@ -1,0 +1,82 @@
+.st-view-box {
+  margin: 0 16px;
+  width: calc(100% - 32px);
+  overflow: auto;
+}
+
+.st-view {
+  position: relative;
+  width: 100%;
+  color: #ddd;
+}
+
+.st-view-header {
+  position sticky;
+  top: 0;
+  background: var(--primary-bg-color);
+}
+
+.st-date, .st-str, .st-rate, .st-num, .st-money {
+  padding: 4px 8px;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+th.st-rate {
+  padding-left: 28px;
+  white-space nowrap;
+
+  &.desc {
+    padding-left: 8px;
+
+    &::after {
+      content: '';
+      display: inline-block;
+      margin-left: 8px;
+      border-style: solid;
+      border-width: 8px 6px 0;
+      border-color: #ddd transparent transparent;
+    }
+  }
+}
+
+.st-date, .st-str {
+  text-align: left;
+}
+
+.st-rate, .st-num, .st-money {
+  text-align: right;
+}
+
+.st-loss {
+  color: #c00;
+}
+
+.st-gray {
+  color: #ddd;
+}
+
+.st-gins {
+  color: #0c0;
+
+}
+
+.st-str.st-imp {
+  color: #fff;
+  font-weight: bolder;
+}
+
+.st-rate.st-imp {
+  font-weight: bolder;
+
+  &:not(.st-gins, .st-loss) {
+    color: #fff;
+  }
+
+  .st-gins {
+    color: #0d0;
+  }
+
+  .st-loss {
+    color: #d00;
+  }
+}
