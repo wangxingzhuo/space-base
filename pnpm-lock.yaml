@@ -108,7 +108,7 @@ importers:
         version: 32.3.3
       resources:
         specifier: link:D:/source/space-view/@watsonserve/resources
-        version: link:../ui/D:/source/space-view/@watsonserve/resources
+        version: link:../../D:/source/space-view/@watsonserve/resources
       typescript:
         specifier: ^4.1.2
         version: 4.9.5
@@ -225,13 +225,13 @@ importers:
         version: 19.2.3(@types/react@19.2.14)
       '@watsonserve/connector':
         specifier: ^0.0.5
-        version: 0.0.5(@watsonserve/utils@0.0.1-alpha.5)(events@3.3.0)
+        version: 0.0.5(@watsonserve/utils@@watsonserve+utils+dist)(events@3.3.0)
       '@watsonserve/ui':
-        specifier: ^0.0.5-alpha.0
-        version: 0.0.5-alpha.0(@watsonserve/utils@0.0.1-alpha.5)
+        specifier: ^0.0.6
+        version: 0.0.6(@types/node@25.8.0)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(@watsonserve/utils@@watsonserve+utils+dist)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@watsonserve/utils':
-        specifier: ^0.0.1-alpha.5
-        version: 0.0.1-alpha.5
+        specifier: workspace:../utils/dist
+        version: link:../utils/dist
       decimal.js:
         specifier: ^10.6.0
         version: 10.6.0
@@ -333,6 +333,12 @@ importers:
       '@watsonserve/utils':
         specifier: workspace:../utils/dist
         version: link:../utils/dist
+      react:
+        specifier: ^19.2.6
+        version: 19.2.6
+      react-dom:
+        specifier: ^19.2.6
+        version: 19.2.6(react@19.2.6)
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: ^21.1.0
@@ -364,34 +370,43 @@ importers:
 
   '@watsonserve/utils':
     dependencies:
+      '@types/node':
+        specifier: ^25.8.0
+        version: 25.8.0
       '@types/react':
         specifier: ^19.2.14
         version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.2.2
+        version: 19.2.3(@types/react@19.2.14)
       '@watsonserve/asm':
         specifier: workspace:*
         version: link:../asm
       react:
         specifier: ^19.2.6
         version: 19.2.6
+      react-dom:
+        specifier: ^19.2.6
+        version: 19.2.6(react@19.2.6)
     devDependencies:
       '@rollup/plugin-commonjs':
-        specifier: ^28.0.9
-        version: 28.0.9(rollup@4.60.4)
+        specifier: ^29.0.2
+        version: 29.0.2(rollup@4.60.4)
       '@rollup/plugin-json':
         specifier: ^6.1.0
         version: 6.1.0(rollup@4.60.4)
       '@rollup/plugin-node-resolve':
         specifier: ^16.0.3
         version: 16.0.3(rollup@4.60.4)
+      '@rollup/plugin-typescript':
+        specifier: ^12.3.0
+        version: 12.3.0(rollup@4.60.4)(tslib@2.8.1)(typescript@6.0.3)
       rollup:
-        specifier: ^4.59.0
+        specifier: ^4.60.4
         version: 4.60.4
       rollup-plugin-asc:
         specifier: ^0.2.0
         version: 0.2.0
-      rollup-plugin-typescript2:
-        specifier: ^0.31.2
-        version: 0.31.2(rollup@4.60.4)(ts-toolbelt@9.6.0)(typescript@6.0.3)
       typescript:
         specifier: ^6.0.2
         version: 6.0.3
@@ -779,15 +794,6 @@ packages:
   '@rollup/plugin-commonjs@25.0.8':
     resolution: {integrity: sha512-ZEZWTK5n6Qde0to4vS9Mr5x/0UZoqCxPVR9KRUjU4kA2sO7GEUn1fop0DAwpO6z0Nw/kJON9bDmSxdWxO/TT1A==}
     engines: {node: '>=14.0.0'}
-    peerDependencies:
-      rollup: ^2.68.0||^3.0.0||^4.0.0
-    peerDependenciesMeta:
-      rollup:
-        optional: true
-
-  '@rollup/plugin-commonjs@28.0.9':
-    resolution: {integrity: sha512-PIR4/OHZ79romx0BVVll/PkwWpJ7e5lsqFa3gFfcrFPWwLXLV39JVUzQV9RKjWerE7B845Hqjj9VYlQeieZ2dA==}
-    engines: {node: '>=16.0.0 || 14 >= 14.17'}
     peerDependencies:
       rollup: ^2.68.0||^3.0.0||^4.0.0
     peerDependenciesMeta:
@@ -1481,10 +1487,15 @@ packages:
     peerDependencies:
       '@watsonserve/utils': workspace:../utils/dist
 
-  '@watsonserve/ui@0.0.5-alpha.0':
-    resolution: {integrity: sha512-Lt3EP7lyvcnyei8c5cDjkhJ/2dOZs/xNVP9Z0x6PKuC62YH+ifDH0KVIKjOnlTxZNa4EFx9Ir2HErd2Bm6ZP9g==}
+  '@watsonserve/ui@0.0.6':
+    resolution: {integrity: sha512-fAJ5FbUfQbm4gs1wnoK6qq1gYgbsuUm2VbuGhzoW9/+BpUvZcpOwuO/xpiaV0KqNZ8Z9ktDn3+IPlR8cMOtq2A==}
     peerDependencies:
+      '@types/node': ^25.8.0
+      '@types/react': ^19.2.2
+      '@types/react-dom': ^19.2.2
       '@watsonserve/utils': ^0.0.1
+      react: ^19.2.6
+      react-dom: ^19.2.6
 
   '@watsonserve/utils@0.0.1-alpha.5':
     resolution: {integrity: sha512-2/kgkg/T5X87SF0Z32WQR/eh1+1uFfCxtrJSPmKwUNDHKCZAv/AS2HQuh8Mww4/N39gdf9HQNrXTmQBbJFdHag==}
@@ -4052,18 +4063,6 @@ snapshots:
     optionalDependencies:
       rollup: 3.30.0
 
-  '@rollup/plugin-commonjs@28.0.9(rollup@4.60.4)':
-    dependencies:
-      '@rollup/pluginutils': 5.3.0(rollup@4.60.4)
-      commondir: 1.0.1
-      estree-walker: 2.0.2
-      fdir: 6.5.0(picomatch@4.0.4)
-      is-reference: 1.2.1
-      magic-string: 0.30.21
-      picomatch: 4.0.4
-    optionalDependencies:
-      rollup: 4.60.4
-
   '@rollup/plugin-commonjs@29.0.2(rollup@4.60.4)':
     dependencies:
       '@rollup/pluginutils': 5.3.0(rollup@4.60.4)
@@ -4855,9 +4854,9 @@ snapshots:
     transitivePeerDependencies:
       - tslib
 
-  '@watsonserve/connector@0.0.5(@watsonserve/utils@0.0.1-alpha.5)(events@3.3.0)':
+  '@watsonserve/connector@0.0.5(@watsonserve/utils@@watsonserve+utils+dist)(events@3.3.0)':
     dependencies:
-      '@watsonserve/utils': 0.0.1-alpha.5
+      '@watsonserve/utils': link:@watsonserve/utils/dist
       events: 3.3.0
 
   '@watsonserve/ui@0.0.2':
@@ -4868,9 +4867,14 @@ snapshots:
     dependencies:
       '@watsonserve/utils': 0.0.1-alpha.5
 
-  '@watsonserve/ui@0.0.5-alpha.0(@watsonserve/utils@0.0.1-alpha.5)':
+  '@watsonserve/ui@0.0.6(@types/node@25.8.0)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(@watsonserve/utils@@watsonserve+utils+dist)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
     dependencies:
-      '@watsonserve/utils': 0.0.1-alpha.5
+      '@types/node': 25.8.0
+      '@types/react': 19.2.14
+      '@types/react-dom': 19.2.3(@types/react@19.2.14)
+      '@watsonserve/utils': link:@watsonserve/utils/dist
+      react: 19.2.6
+      react-dom: 19.2.6(react@19.2.6)
 
   '@watsonserve/utils@0.0.1-alpha.5': {}
 
@@ -6836,19 +6840,6 @@ snapshots:
       rollup: 3.30.0
       tslib: 2.8.1
       typescript: 4.9.5
-    transitivePeerDependencies:
-      - ts-toolbelt
-
-  rollup-plugin-typescript2@0.31.2(rollup@4.60.4)(ts-toolbelt@9.6.0)(typescript@6.0.3):
-    dependencies:
-      '@rollup/pluginutils': 4.2.1
-      '@yarn-tool/resolve-package': 1.0.47(ts-toolbelt@9.6.0)
-      find-cache-dir: 3.3.2
-      fs-extra: 10.1.0
-      resolve: 1.22.12
-      rollup: 4.60.4
-      tslib: 2.8.1
-      typescript: 6.0.3
     transitivePeerDependencies:
       - ts-toolbelt
 
