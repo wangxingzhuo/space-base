@@ -20,6 +20,9 @@ export interface RequestOptions {
   headers?: Record<string, string>;
   data?: any;
   timeout?: number;
+  credentials?: RequestCredentials;
+  mode?: RequestMode;
+  referrerPolicy?: ReferrerPolicy;
 }
 
 interface IBaseResp {
@@ -50,7 +53,7 @@ function urlEncode(data: any, searchParams = new URLSearchParams()) {
 }
 
 export async function baseRequest(options: RequestOptions): Promise<IBaseResp> {
-  const { api, method, headers, data, timeout } = options;
+  const { api, method, headers, data, timeout, ...conf } = options;
   const reqNoBody = Method.GET === method || Method.HEAD === method;
   const signal = timeout ? AbortSignal.timeout(timeout) : null;
 
@@ -58,12 +61,13 @@ export async function baseRequest(options: RequestOptions): Promise<IBaseResp> {
     method,
     headers,
     cache: 'no-cache',
+    keepalive: true,
+    body: (reqNoBody) ? undefined : data,
+    signal,
     credentials: 'include',
     mode: 'no-cors',
     referrerPolicy:'same-origin',
-    keepalive: true,
-    body: (reqNoBody) ? undefined : data,
-    signal
+    ...conf
   });
 
   const { ok, status, statusText } = resp;
@@ -147,6 +151,8 @@ function responseParse(rsp: IBaseResp): IRsp {
 }
 
 export async function request(options: RequestOptions) {
-  const rsp = await baseRequest(requestParams(options));
+  const { api, method, timeout, headers, data, ...conf } = options;
+  options = Object.assign(conf, requestParams({ api, method, timeout, headers, data }));
+  const rsp = await baseRequest(options);
   return responseParse(rsp);
 }

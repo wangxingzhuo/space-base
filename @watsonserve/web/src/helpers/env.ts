@@ -1,0 +1,1 @@
+export const isMusicBg = '/music-bg' === window.location.pathname;

@@ -1,4 +1,4 @@
-import { Method, ContentType, baseRequest } from './request';
+import { Method, ContentType, baseRequest } from './request.js';
 import { sleep, randomUUID } from '@watsonserve/utils';
 
 export interface IMsg {

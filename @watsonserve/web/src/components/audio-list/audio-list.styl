@@ -1,0 +1,66 @@
+@import '~@/assets/style/theme.styl'
+
+aside.panel
+  position relative
+  background #565656
+  transition transform 500ms
+
+  &.show
+    transform translateX(-100%)
+
+  .toggler
+    position absolute
+    top 50%
+    left 0
+    margin -50% 0 0 -12px
+    border-radius 8px 0 0 8px
+    width 12px
+    height 48px
+    background $panel-color
+
+    &:hover
+      background #787878
+
+  .audio-list
+    height 100%
+    overflow overlay
+
+    .audio-list__item
+      font-size 16px
+      line-height 24px
+      user-select none
+
+      &.active .audio-list__item__content
+        background rgba(255, 255, 255, 0.2)
+
+        &:hover
+          color $primary-color
+
+      .audio-list__item__content
+        display block
+        padding 8px 16px
+        color #eee
+        overflow hidden
+        text-overflow ellipsis
+        white-space nowrap
+
+        &:hover
+          color #fff
+          background rgba(255, 255, 255, 0.6)
+
+@media screen and (min-width 668px) and (max-width 1920px)
+  aside.panel
+    width 34.375%
+    max-width 480px
+    min-width 240px
+
+    .toggler
+      display none
+
+@media screen and (min-width 429px) and (max-width 667px)
+  aside.panel
+    position absolute
+    top 0
+    left 100%
+    width 240px
+    height 100%

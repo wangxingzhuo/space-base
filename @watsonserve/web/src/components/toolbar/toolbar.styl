@@ -1,0 +1,80 @@
+$toolbar-padding = 4px
+$height = 32px
+$addr-height = ($height - 2px)
+$addr-font-size = ($height / 2)
+$addr-input-pading = 4px
+$addr-block-padding = 8px
+$address-bg-color = #fbfbfb
+
+.tool-bar
+  display flex
+  padding $toolbar-padding ($toolbar-padding * 2)
+  width 100%
+  height ($height + $toolbar-padding *2)
+  align-items center
+
+  h1.app-name
+    padding 0 20px
+    height $height
+    white-space nowrap
+    font-size 24px
+    line-height $height
+
+  .btn-group
+    display flex
+    margin 0 10px
+
+    button.btn
+      border 0
+      padding 0
+      width $height
+      height $height
+
+  .address-bar
+    display flex
+    border 1px solid #f0f0f0
+    border-radius 4px
+    width 100%
+    height $height
+    overflow hidden
+    cursor text
+    text-align left
+    background $address-bg-color
+    line-height $addr-height
+
+    ul.address-list
+      width 100%
+      overflow hidden
+
+      li.address-list__item
+        display inline-block
+        border-left 2px solid $address-bg-color
+
+        a.address-list__clickabled
+          display block
+          padding 0 2px
+          color #333
+          font-size $addr-font-size
+
+          &:hover
+            background #f0f0f0
+
+        &:first-child
+          border-left 0
+
+          a.address-list__clickabled
+            padding-left $addr-block-padding
+            padding-right ($addr-block-padding / 2)
+
+    form.addr-form
+      width 100%
+
+      input.addr-input
+        display block
+        border 0
+        padding $addr-input-pading $addr-block-padding
+        width 100%
+        height $addr-height
+        font-size $addr-font-size
+        background transparent
+        line-height ($addr-height - $addr-input-pading * 2)

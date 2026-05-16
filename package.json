@@ -9,11 +9,26 @@
     "utils": "pnpm --filter @watsonserve/asm build && pnpm --filter @watsonserve/utils build",
     "audio": "pnpm --filter @watsonserve/audioplayer build",
     "ui": "pnpm --filter @watsonserve/ui build",
-    "connector": "pnpm --filter @watsonserve/connector build"
+    "connector": "pnpm --filter @watsonserve/connector build",
+    "web": "pnpm workspace @watsonserve/web build",
+    "resources": "pnpm workspace @watsonserve/resources build",
+    "elec": "pnpm workspace @watsonserve/electron build",
+    "build": "pnpm utils && pnpm audio && pnpm web && pnpm elec",
+    "package": "pnpm build && ./pack.sh",
+    "buildweb": "pnpm web && rm -rf ./dist/views && mv ./@watsonserve/web/build ./dist/views",
+    "webdev": "pnpm run --filter @watsonserve/web start",
+    "dev": "pnpm workspace @watsonserve/electron dev",
+    "resource": "pnpm workspace @watsonserve/resources build",
+    "stock-loader": "pnpm run --filter @watsonserve/stock-base build",
+    "stock-build": "pnpm run --filter @watsonserve/stock-node build",
+    "stock-dev": "pnpm run --filter @watsonserve/stock-node srv"
   },
   "devDependencies": {
     "lerna": "^8.2.4",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.2",
+    "@rsbuild/plugin-svgr": "^1.2.2",
+    "@types/node": "^25.6.0",
+    "tsx": "^4.21.0"
   },
-  "packageManager": "pnpm@10.8.1+sha512.c50088ba998c67b8ca8c99df8a5e02fd2ae2e2b29aaf238feaa9e124248d3f48f9fb6db2424949ff901cffbb5e0f0cc1ad6aedb602cd29450751d11c35023677"
+  "packageManager": "pnpm@10.33.0"
 }

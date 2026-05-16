@@ -1,0 +1,72 @@
+$dir-title-size = 12px
+$dir-title-bg-color = #f4f4f4
+$primary-color = #4aa6ff
+$dir-node-size = 16px
+
+$dir-node-height = ($dir-node-size * 2)
+$dir-title-height = ($dir-title-size * 1.5)
+
+dl.dir
+  display flex
+  flex-direction column
+  margin 0
+  height 100%
+  overflow hidden
+
+  dt.dir__title
+    padding 0 4px
+    height $dir-title-height
+    text-align left
+    color #999
+    font-size $dir-title-size
+    background $dir-title-bg-color
+    line-height $dir-title-height
+
+  dd.dir__content
+    height 100%
+    overflow-y auto
+    background-color #eee
+
+  ul.dir__list
+    li.dir__list__item
+      height $dir-node-height
+      overflow hidden
+
+      a.file-node
+        display flex
+        padding 0 8px
+        height $dir-node-height
+        justify-content space-between
+        align-items center
+        font-size $dir-node-size
+        background #eaeaea
+        line-height $dir-node-height
+
+        &.active
+          color #fff
+          background-color $primary-color
+
+        img.file-icon
+          display inline-block
+          margin-right 10px
+          width $dir-node-size
+          height $dir-node-size
+          vertical-align middle
+
+        .file-name
+          display block
+          width 100%
+          overflow hidden
+          text-overflow ellipsis
+          text-align left
+          white-space nowrap
+
+        &.dir::after
+          content ''
+          display block
+          margin-left 10px
+          width 0
+          height 0
+          border 4px solid transparent
+          border-left 4px solid #999
+          border-right 0 none transparent

@@ -1,0 +1,106 @@
+@import '~@/assets/style/theme.styl'
+
+$height = 32px
+$addr-height = ($height - 2px)
+$addr-font-size = ($height / 2)
+$addr-input-pading = 4px
+$addr-block-padding = 16px
+
+.app
+  position fixed
+  display flex
+  top 0
+  left 0
+  width 100%
+  height 100%
+  flex-direction column
+  overflow hidden
+
+  @media screen and (min-width 429px)
+    .app__header
+      display flex
+      box-sizing border-box
+      padding 0 $addr-block-padding
+      flex 56px 0 0
+      justify-content space-between
+      align-items center
+      background $bg-color
+
+      form.addr-form
+        margin 0 $addr-block-padding
+        width 60%
+
+        input.addr-input
+          display block
+          border 1px solid transparent
+          border-radius $addr-height
+          padding $addr-input-pading $addr-block-padding
+          width 100%
+          height $addr-height
+          color #aaa
+          font-size $addr-font-size
+          background #444
+          line-height ($addr-height - $addr-input-pading * 2)
+          caret-color #fff
+
+          &:focus
+            color #ddd
+            background #333
+
+  .main
+    display flex
+    height 100%
+    flex-direction column
+    overflow hidden
+
+    .content
+      display flex
+      position relative
+      height 100%
+      overflow hidden
+
+      .anslyser
+        width 100%
+        height 100%
+        background #4a4a4a
+
+        canvas.oscilloscope
+          width 100%
+          height 100%
+
+      .equalizer
+        min-height 256px
+
+    @media screen and (min-width 429px)
+      .content
+        width 100%
+
+  @media screen and (max-width 319px)
+    .main
+      display none
+
+  @media screen and (max-width 428px)
+    .app__header
+      display none
+
+    .main
+      padding-top 40px
+      flex-direction column
+      background #565656
+
+      .content
+        box-sizing border-box
+        border-radius 16px
+        margin 0 20px
+        min-height 320px
+        overflow hidden
+
+        .anslyser
+          display none
+
+        .equalizer
+          padding 16px 4px
+          height 100%
+
+      .panel
+        padding-top 20px

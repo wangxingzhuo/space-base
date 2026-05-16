@@ -1,5 +1,8 @@
 ignoredBuiltDependencies:
   - nx
 
+onlyBuiltDependencies:
+  - esbuild
+
 packages:
   - '@watsonserve/*'

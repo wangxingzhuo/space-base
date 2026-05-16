@@ -17,7 +17,7 @@
     "rollup": "^3.30.0",
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-polyfill-node": "^0.12.0",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.2"
   },
   "dependencies": {
     "@types/node": "^20.19.37",

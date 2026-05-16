@@ -1,8 +1,8 @@
-import EventEmitter from 'events';
-import { IMsg } from './connect';
-import { IConnectProps, Heartbeat } from './heartbeat';
+import { EventEmitter } from 'events';
+import { IMsg } from './connect.js';
+import { IConnectProps, Heartbeat } from './heartbeat.js';
 
-export { Method, ContentType, request } from './request';
+export { Method, ContentType, request } from './request.js';
 
 interface IChannelProps extends IConnectProps {
 }

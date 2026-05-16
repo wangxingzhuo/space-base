@@ -1,10 +1,11 @@
 {
   "name": "@watsonserve/connector",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "private": true,
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "build": "rollup --config rollup.config.js && node ./build.cjs"
+    "build": "rollup --config rollup.config.mjs && node ./build.cjs"
   },
   "browserslist": {
     "production": [
@@ -19,17 +20,18 @@
     ]
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^21.1.0",
-    "@rollup/plugin-node-resolve": "^13.3.0",
-    "@rollup/plugin-typescript": "^8.5.0",
-    "@types/node": "^16.18.126",
-    "rollup": "^2.80.0",
-    "rollup-plugin-dts": "^6.4.0",
+    "@rollup/plugin-commonjs": "^29.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-typescript": "^12.3.0",
+    "@types/events": "^3.0.3",
+    "@types/node": "^25.5.0",
+    "rollup": "^4.60.0",
+    "rollup-plugin-dts": "^6.4.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.2"
   },
   "peerDependencies": {
-    "@watsonserve/utils": "^0.0.1-alpha.3",
+    "@watsonserve/utils": "^0.0.1-alpha.5",
     "events": "^3.3.0"
   }
 }

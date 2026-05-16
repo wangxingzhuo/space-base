@@ -1,0 +1,24 @@
+{
+  "name": "SomeMusic",
+  "version": "0.0.1-alpha.0",
+  "private": true,
+  "main": "./main.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.1.1",
+    "@electron-forge/maker-deb": "^6.1.1",
+    "@electron-forge/maker-rpm": "^6.1.1",
+    "@electron-forge/maker-squirrel": "^6.1.1",
+    "@electron-forge/maker-zip": "^6.1.1",
+    "@electron-forge/plugin-auto-unpack-natives": "^6.1.1",
+    "@electron/asar": "^3.2.4",
+    "electron": "^32.0.1"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "name": "@watsonserve/web",
+  "version": "0.0.1-alpha.0",
+  "private": true,
+  "scripts": {
+    "start": "rsbuild dev --open",
+    "build": "rsbuild build",
+    "preview": "rsbuild preview"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.17.20",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@watsonserve/resources": "link:./resources",
+    "@watsonserve/audio-player": "^0.0.1-alpha.2",
+    "@watsonserve/connector": "^0.0.2",
+    "@watsonserve/utils": "^0.0.1-alpha.5",
+    "@watsonserve/ui": "^0.0.3",
+    "events": "^3.3.0",
+    "lodash": "^4.17.21",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.9.5"
+  },
+  "devDependencies": {
+    "@rsbuild/core": "^1.6.2",
+    "@rsbuild/plugin-node-polyfill": "^1.3.0",
+    "@rsbuild/plugin-react": "^1.4.1",
+    "@rsbuild/plugin-stylus": "^1.2.0",
+    "@rsbuild/plugin-svgr": "^1.2.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.8.3"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "proxy": "http://127.0.0.1:8080"
+}

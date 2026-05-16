@@ -1,0 +1,68 @@
+@import '~@/assets/style/theme.styl'
+
+.play-controllor
+  display flex
+  flex-direction column
+  box-sizing border-box
+  flex 92px 0 0
+  background $bg-color
+
+  @media screen and (max-width 428px)
+    padding 4px 8px
+
+  @media screen and (min-width 429px)
+    padding 8px 20px
+
+  .progress
+    height 28px
+
+  footer.ctrl-footer
+    display flex
+    height 48px
+    justify-content space-between
+    align-items center
+
+    .order, .loop-btn
+      display block
+      padding 6px
+      width 40px
+      height 40px
+      line-height 24px
+      background transparent
+
+    .loop-btn svg.icon
+      fill #fff
+
+    .order svg.icon
+      fill #bbb
+
+      &.active
+        fill #fff
+
+    .ctrl
+      display flex
+      width 128px
+      justify-content space-between
+      align-items center
+
+      button.play-pause, button.last, button.next
+        display flex
+        border-radius 48px
+        justify-content center
+        align-items center
+        background #fff
+
+        svg.icon
+          fill #333
+
+      button.play-pause
+        padding 12px
+        width 48px
+        height 48px
+        line-height 48px
+
+      button.last, button.next
+        padding 8px
+        width 32px
+        height 32px
+        line-height 32px

@@ -1,4 +1,4 @@
-import { IMsg, IConnectionProps, Connection } from './connect';
+import { IMsg, IConnectionProps, Connection } from './connect.js';
 
 export interface IConnectProps extends IConnectionProps {
   beatTime: number;

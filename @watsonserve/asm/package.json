@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "assemblyscript": "^0.28.10",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.2"
   },
   "license": "MIT",
   "type": "module"

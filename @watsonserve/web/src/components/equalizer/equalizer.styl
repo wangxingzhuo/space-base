@@ -1,0 +1,66 @@
+@import '~@/assets/style/theme.styl'
+
+genProgress($size = 4px, $trackColor = #bbb, $curColor = #fff)
+  $radius = $size * 3
+  $trackWidth = $size * 2
+  $overHot = $size * 8
+  $curWidth = $size * 3
+  $curBorderWidth = $size
+  $curOverflow = ($curWidth - $trackWidth) * 0.5
+
+  .track-wrapper
+    display flex
+    flex 1
+    flex-direction column
+    align-items center
+
+    .track
+      display flex
+      margin $trackWidth 0
+      width $curWidth
+      height 100%
+      justify-content center
+
+      .track__inner
+        display flex
+        border-radius $radius
+        width $size
+        height 100%
+        flex-direction column
+        justify-content center
+        align-items center
+        background $trackColor
+
+        .current
+          border $size solid $primary-color
+          border-radius $curWidth
+          width $curWidth
+          height $curWidth
+          background $curColor
+
+          &::before, &::after
+            content ''
+            display block
+            width $curWidth
+            height $overHot
+
+          &::before
+            transform translate(0 - $curBorderWidth, 0 - $overHot)
+
+          &::after
+            transform translate(0 - $curBorderWidth, 0 - $overHot + $curBorderWidth * 2)
+
+    .track-vol, .track-name
+      display block
+      height $size * 6
+      color $trackColor
+      font-size $curWidth
+      line-height $size * 6
+
+.equalizer
+  display flex
+  padding 16px
+  height 256px
+  justify-content space-between
+  background $bg-color
+  genProgress(4px)
